@@ -4,8 +4,8 @@ A high-integrity Order Management System built with React + Vite frontend and Go
 
 ## Architecture
 
-- **Frontend**: React + Vite SPA
-- **Backend**: Go service with three-layer architecture (API → Service → DataStore)
+- **Client**: React + Vite SPA
+- **Server**: Go service with three-layer architecture (API → Service → DataStore)
 - **Database**: PostgreSQL with ACID compliance
 - **State Management**: Finite State Machine (FSM) for order lifecycle
 - **Concurrency Control**: Pessimistic locking (SELECT FOR UPDATE) for inventory
@@ -22,8 +22,9 @@ A high-integrity Order Management System built with React + Vite frontend and Go
 
 ```
 order_management_system/
-├── frontend/          # React + Vite SPA
-├── backend/           # Go service
+├── client/            # React + Vite SPA
+├── server/            # Go service
+├── migrations/        # Database migrations
 └── docker-compose.yml # Local development setup
 ```
 
@@ -38,21 +39,21 @@ See [RUN.md](RUN.md) for detailed setup and run instructions.
 docker compose up -d postgres
 # OR if that doesn't work: docker-compose up -d postgres
 
-# 2. Backend (Terminal 1)
-cd backend
+# 2. Server (Terminal 1)
+cd server
 go mod download
 cp .env.sample .env
 go run cmd/main.go --migrate
 go run cmd/main.go --api --port=8080
 
-# 3. Frontend (Terminal 2)
-cd frontend
+# 3. Client (Terminal 2)
+cd client
 npm install
 cp .env.sample .env
 npm run dev
 ```
 
-The frontend will be available at `http://localhost:3000` and the backend at `http://localhost:8080`.
+The client will be available at `http://localhost:3000` and the server at `http://localhost:8080`.
 
 ## API Endpoints
 
@@ -77,13 +78,13 @@ The frontend will be available at `http://localhost:3000` and the backend at `ht
 
 ### Running Tests
 ```bash
-cd backend
+cd server
 make test
 ```
 
 ### Building
 ```bash
-cd backend
+cd server
 make build
 ```
 

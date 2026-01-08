@@ -7,9 +7,9 @@ set -e
 
 echo "🚀 Setting up Order Management System..."
 
-# Create backend .env file
-echo "📝 Creating backend/.env..."
-cat > backend/.env << 'EOF'
+# Create server .env file
+echo "📝 Creating server/.env..."
+cat > server/.env << 'EOF'
 # Database Configuration
 DB_HOST=localhost
 DB_PORT=5432
@@ -29,9 +29,9 @@ JWT_EXPIRY=24h
 LOG_LEVEL=info
 EOF
 
-# Create frontend .env file
-echo "📝 Creating frontend/.env..."
-cat > frontend/.env << 'EOF'
+# Create client .env file
+echo "📝 Creating client/.env..."
+cat > client/.env << 'EOF'
 VITE_API_BASE_URL=http://localhost:8080/api/v1
 EOF
 
@@ -40,5 +40,6 @@ echo ""
 echo "Next steps:"
 echo "1. Make sure Docker Desktop is running"
 echo "2. Run: docker compose up -d postgres"
-echo "3. Then follow the instructions in SETUP_NOW.md"
+echo "3. Start server: cd server && go run cmd/main.go --migrate && go run cmd/main.go --api --port=8080"
+echo "4. Start client: cd client && npm install && npm run dev"
 

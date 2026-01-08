@@ -64,34 +64,34 @@ for i in {1..30}; do
     sleep 1
 done
 
-# Setup backend environment
+# Setup server environment
 echo ""
-echo "⚙️  Setting up backend configuration..."
-cd backend
+echo "⚙️  Setting up server configuration..."
+cd server
 if [ ! -f .env ]; then
     cp .env.sample .env
-    echo "✅ Created backend/.env file"
+    echo "✅ Created server/.env file"
 else
-    echo "✅ backend/.env already exists"
+    echo "✅ server/.env already exists"
 fi
 
-# Setup frontend environment
+# Setup client environment
 echo ""
-echo "⚙️  Setting up frontend configuration..."
-cd ../frontend
+echo "⚙️  Setting up client configuration..."
+cd ../client
 if [ ! -f .env ]; then
     cp .env.sample .env
-    echo "✅ Created frontend/.env file"
+    echo "✅ Created client/.env file"
 else
-    echo "✅ frontend/.env already exists"
+    echo "✅ client/.env already exists"
 fi
 
 echo ""
 echo "✅ Setup complete!"
 echo ""
 echo "Next steps:"
-echo "1. Backend: cd backend && go mod download && go run cmd/main.go --migrate && go run cmd/main.go --api --port=8080"
-echo "2. Frontend: cd frontend && npm install && npm run dev"
+echo "1. Server: cd server && go mod download && go run cmd/main.go --migrate && go run cmd/main.go --api --port=8080"
+echo "2. Client: cd client && npm install && npm run dev"
 echo ""
 echo "Database is running at: localhost:5432"
 echo "  User: postgres"
