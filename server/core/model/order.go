@@ -23,6 +23,7 @@ type Order struct {
 	ProductID    uuid.UUID  `gorm:"type:uuid;not null" json:"product_id"`
 	Quantity     int        `gorm:"not null" json:"quantity"`
 	CurrentStatus OrderStatus `gorm:"type:varchar(50);not null;default:'ORDERED'" json:"current_status"`
+	Metadata     JSONB      `gorm:"type:jsonb" json:"metadata"` // For shipping address and other order details
 	CreatedAt    time.Time  `json:"created_at"`
 	UpdatedAt    time.Time  `json:"updated_at"`
 	Product      Product    `gorm:"foreignKey:ProductID" json:"product,omitempty"`
